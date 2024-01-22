@@ -1,0 +1,35 @@
+﻿1. Có 3 mức độ truy cập: public, private, protected, internal(trong cx 1 slolution sẽ gọi đến được)
+
+2. 4 phương thức:
+   GET: lấy dlieu(k có nhiều đkien, k có nhiều queryString)
+   POST: lấy dl(có nhiều đkien, filter, queryString )
+   PUSH: sửa dlieu
+   DELETE: xóa dlieu
+
+3. Bản chất 1 API là 1 cái hàm
+
+4. FromQuery: cách nhau bởi dấu ? và các filter là 1 cặp key value VD:https://localhost:7277/api/Employees?name=ab&age=37
+5. FromRoute: cách nhau bởi dấu / VD:https://localhost:7277/api/Employees/987a1acf-d965-45e4-92d8-921b97c551aa
+
+6. Comment: Ctrl K C mở là Ctrl K U 
+
+7. Không thể có 2 Phương thức Get trùng trong code mà phải lms đó để phân biệt
+   Bản chất ghi [HttpGet("{employeeId}")] là đang viết tắt của phương thức(tên đường) + Route(giống như số nhà)
+   [HttpGet]
+   [Route("{employeeId}")]
+   Nếu viết [HttpGet("{employeeId}")] hiểu là phải truyền tham số employeeId vào hàm còn [HttpGet("employeeId")] thường viết khi viết hàm filter
+
+8. Phải dùng Interface vì có tính đa kế thừa  
+
+
+9. Dapper
+   - Execute(): return so ban ghi bi anh huong dùng khi them sua xoa dl
+   - QueryMultiple(): dung khi phan trang
+   - QueryFirstOrDefault(): dung khi lay nv theo ID
+   - Query(): lay tat ca
+
+10. Resource file chỉnh Access modifier là public thì các file các ms dùng đc
+
+11. Tách làm cấu trúc 3 tầng: Client -> [Controller -> BL(Business Layer)(là lớp xử lý nghiệp vụ logic VD: validate, ...) -> DL(Data Layer)(là nơi gọi các hàm của mysql lấy dlieu từ database)] -> Database
+
+12. Interface : Interface là kế thừa, Class : Interface là implement
