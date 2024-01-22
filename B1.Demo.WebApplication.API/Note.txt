@@ -33,5 +33,3 @@
 11. Tách làm cấu trúc 3 tầng: Client -> [Controller -> BL(Business Layer)(là lớp xử lý nghiệp vụ logic VD: validate, ...) -> DL(Data Layer)(là nơi gọi các hàm của mysql lấy dlieu từ database)] -> Database
 
 12. Interface : Interface là kế thừa, Class : Interface là implement
-
-13. Test git
