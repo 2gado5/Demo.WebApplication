@@ -1,5 +1,6 @@
 ﻿using B1.Demo.WebApplication.Common.Entities;
 using B1.Demo.WebApplication.Common.Entities.DTO;
+using Demo.WebApplication.BL.BaseBL;
 using Demo.WebApplication.DL.EmployeeDL;
 using System;
 using System.Collections.Generic;
@@ -9,32 +10,24 @@ using System.Threading.Tasks;
 
 namespace Demo.WebApplication.BL.EmployeeBL
 {
-    public class EmployeeBL : IEmployeeBL
+    public class EmployeeBL : BaseBL<Employee>, IEmployeeBL
     {
         #region Field
         private IEmployeeDL _employeeDL;
         #endregion
 
         #region Constructor
-        public EmployeeBL(IEmployeeDL employeeDL)
+        public EmployeeBL(IEmployeeDL employeeDL) : base(employeeDL)
         {
             _employeeDL = employeeDL;
         }
         #endregion
 
-        public List<Employee> GetEmployees()
+        #region Method
+        public string GetNewCode()
         {
-            return _employeeDL.GetEmployees();
+            return "NV0001";
         }
-
-        public Employee GetEmployeeById(Guid employeeId)
-        {
-            return _employeeDL.GetEmployeeById(employeeId);
-        }
-
-        public PagingResult GetPaging(string? keyword, Guid? departmantId, Guid? positionId, int pageSize = 10, int pageNumber = 1)
-        {
-            throw new NotImplementedException();
-        }
+        #endregion
     }
 }

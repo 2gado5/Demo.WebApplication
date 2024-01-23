@@ -1,8 +1,9 @@
 ﻿using B1.Demo.WebApplication.Common.Enums;
+using Demo.WebApplication.Comon.Entities;
 
 namespace B1.Demo.WebApplication.Common.Entities
 {
-    public class Employee
+    public class Employee : ManageChange
     {
         // Cách tạo ra summary gõ 3 dấu ///
         // Ctrl M O để đóng summary còn mở Ctrl M L 
@@ -41,14 +42,6 @@ namespace B1.Demo.WebApplication.Common.Entities
         public string PhoneFix { get; set; }
         
         public string Email { get; set; }
-        
-        public DateTime ModifiedDate { get; set; }
-        
-        public string ModifiedBy { get; set; }
-
-        public DateTime CreatedDate { get; set; }
-
-        public string CreateBy { get; set; }
         
         public Guid DepartmentId { get; set; }
 

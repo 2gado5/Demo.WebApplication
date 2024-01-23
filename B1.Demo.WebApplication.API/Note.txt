@@ -21,7 +21,6 @@
 
 8. Phải dùng Interface vì có tính đa kế thừa  
 
-
 9. Dapper
    - Execute(): return so ban ghi bi anh huong dùng khi them sua xoa dl
    - QueryMultiple(): dung khi phan trang
@@ -29,7 +28,17 @@
    - Query(): lay tat ca
 
 10. Resource file chỉnh Access modifier là public thì các file các ms dùng đc
+    Interface : Interface là kế thừa, Class : Interface là implement
 
 11. Tách làm cấu trúc 3 tầng: Client -> [Controller -> BL(Business Layer)(là lớp xử lý nghiệp vụ logic VD: validate, ...) -> DL(Data Layer)(là nơi gọi các hàm của mysql lấy dlieu từ database)] -> Database
-
-12. Interface : Interface là kế thừa, Class : Interface là implement
+    Mô hình: 
+    Tầng DL: IBaseDL: nhận đầu vào là kiểu DL Generic, nó định nghĩa các hàm sd chung sẽ thực hiện connect vs Database
+             BaseDL: implement IBaseDL và thực hiện thân hàm cho các hàm đó
+             IEmployeeDL: kế thừa lại IBaseDL(kế thừa các hàm dùng chung, truyền đối tượng muốn dùng) và định nghĩa các hàm riêng mà đối tượng này sd
+             EmployeeDL: kế thừa BaseDL, implement IEmployeeDL và triển khai thân hàm riêng(interface IEmployeeDL) mà đối tượng này sd
+    Tầng BL: IBaseBL: định nghĩa các hàm sd chung giống vs IBaseDL
+             BaseBL: implement IBaseBL, khởi tạo đối tượng IBaseDL, triển khai thân hàm(dùng _baseBL(IBaseDL)) để gọi các hàm đã đc viết ở tầng DL
+             IEmployeeBL: kế thừa lại IBaseBL, truyền đối tượng muốn dùng, viết các hàm riêng mà đối tượng này dùng
+             EmployeeBL: kế thừa BaseBL, implement Implement IEmployeeBL, triển khai thân hàm cho các hàm riêng của đối tượng 
+    Tầng Controller: BasesController: khởi tạo IBaseBL, viết các thân hàm Api gọi các hàm connect vs DB qua _baseBL
+                     EmployeesController: kế thừa BasesController(kế thừa lại các hàm chung) và viết các hàm riêng của đối tượng này

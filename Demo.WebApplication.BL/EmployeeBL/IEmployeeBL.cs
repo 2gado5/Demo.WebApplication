@@ -5,20 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Demo.WebApplication.BL.BaseBL;
 
 namespace Demo.WebApplication.BL.EmployeeBL
 {
-    public interface IEmployeeBL
+    public interface IEmployeeBL : IBaseBL<Employee>
     {
-        public List<Employee> GetEmployees();
-
-        public Employee GetEmployeeById(Guid employeeId);
-
-        public PagingResult GetPaging(
-           string? keyword,
-           Guid? departmantId,
-           Guid? positionId,
-           int pageSize = 10,
-           int pageNumber = 1);
+        public string GetNewCode();
     }
 }

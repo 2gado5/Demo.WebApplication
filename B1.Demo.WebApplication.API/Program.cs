@@ -1,4 +1,7 @@
+using Demo.WebApplication.BL.BaseBL;
 using Demo.WebApplication.BL.EmployeeBL;
+using Demo.WebApplication.DL;
+using Demo.WebApplication.DL.BaseDL;
 using Demo.WebApplication.DL.EmployeeDL;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +16,10 @@ builder.Services.AddSwaggerGen();
 // Dependency injection
 builder.Services.AddScoped<IEmployeeBL, EmployeeBL>();
 builder.Services.AddScoped<IEmployeeDL, EmployeeDL>();
+builder.Services.AddScoped(typeof(IBaseBL<>), typeof(BaseBL<>));
+builder.Services.AddScoped(typeof(IBaseDL<>), typeof(BaseDL<>));
+
+DatabaseContext.ConnectionString = builder.Configuration.GetConnectionString("MySql");
 
 var app = builder.Build();
 

@@ -1,8 +1,8 @@
 ﻿namespace B1.Demo.WebApplication.Common.Entities.DTO
 {
-    public class PagingResult
+    public class PagingResult<T>
     {
-        public List<Employee> Data { get; set; }
+        public List<T> Data { get; set; }
 
         /// <summary>
         /// Tổng số bản ghi t/m điều kiện
